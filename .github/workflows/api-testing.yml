@@ -74,9 +74,7 @@ jobs:
       - name: Run Postman Collection Cloud
         run: |
           postman collection run 52114994-baf247bf-8a33-4705-ad3e-834e2e2ee08a \
-            --env-var "baseUrl=http://localhost:3001" \
-            --reporters cli,json \
-            --reporter-json-export test-results.json \
+            -e 52114994-b2837cd0-ded1-4247-872f-ad45e540e01a \
             --report-events
 
       - name: Upload Test Results
