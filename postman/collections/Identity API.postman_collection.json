@@ -48,9 +48,6 @@
             }
           ],
           "id": "74d6e7f4-2d56-4a3e-8c1c-1fe9124950e6",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "POST",
             "header": [
@@ -256,9 +253,6 @@
             }
           ],
           "id": "1d7e1d3c-a2f1-445d-b1a5-1fbcce629e38",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "GET",
             "header": [],
@@ -273,7 +267,6 @@
               ],
               "variable": [
                 {
-                  "id": "04ed0fca-fc0a-44ea-8b7c-aecf5b249475",
                   "key": "id",
                   "value": "u1",
                   "description": "The unique identifier of the user"
@@ -400,9 +393,6 @@
             }
           ],
           "id": "76608cb2-370d-477b-93a6-7865e9b669a4",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "GET",
             "header": [],
@@ -489,9 +479,6 @@
         }
       ],
       "id": "ac5f5238-0f1e-4ba6-8cd5-ecd802b8b498",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
       "request": {
         "method": "GET",
         "header": [],
@@ -540,7 +527,7 @@
   ],
   "variable": [
     {
-      "id": "cef21a28-cd12-46e4-a34e-da0a85bf1f7e",
+      "id": "49f3a73b-59d3-4383-aab6-74d31e5ea766",
       "key": "baseUrl",
       "value": "http://localhost:3001"
     }
