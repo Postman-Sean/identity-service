@@ -41,7 +41,7 @@
                   "",
                   "pm.test('Email format is valid', function() {",
                   "    const user = pm.response.json().user;",
-                  "    pm.expect(user.email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/);",
+                  "    pm.expect(user.email).to.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/);",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -222,34 +222,11 @@
         },
         {
           "name": "Get User by ID",
-          "id": "1d7e1d3c-a2f1-445d-b1a5-1fbcce629e38",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/users/:id",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "users",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "abc123",
-                  "description": "The unique identifier of the user"
-                }
-              ]
-            },
-            "description": "Get user by ID"
-          },
           "event": [
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "0a4d9a0c-4cdb-44d9-a250-814ededb548c",
                 "exec": [
                   "// Contract tests for Get User by ID",
                   "pm.test('Response has valid status code (200 or 404)', function() {",
@@ -276,7 +253,7 @@
                   "",
                   "    pm.test('Email format is valid', function() {",
                   "        const user = pm.response.json().user;",
-                  "        pm.expect(user.email).to.match(/^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$/);",
+                  "        pm.expect(user.email).to.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/);",
                   "    });",
                   "}",
                   "",
@@ -286,10 +263,48 @@
                   "        pm.expect(jsonData).to.have.property('error').that.is.a('string');",
                   "    });",
                   "}"
-                ]
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "2d15a53f-2d81-4ef8-9e65-1d33d2474ce4",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
+          "id": "1d7e1d3c-a2f1-445d-b1a5-1fbcce629e38",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "u1",
+                  "description": "The unique identifier of the user"
+                }
+              ]
+            },
+            "description": "Get user by ID"
+          },
           "response": [
             {
               "id": "93b539b5-b02d-4c00-a512-614b4faf3e08",
@@ -367,21 +382,6 @@
         },
         {
           "name": "List All Users",
-          "id": "76608cb2-370d-477b-93a6-7865e9b669a4",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/users",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "users"
-              ]
-            },
-            "description": "List all users"
-          },
           "event": [
             {
               "listen": "test",
@@ -415,13 +415,28 @@
                   "pm.test('Each user email has valid format', function() {",
                   "    const users = pm.response.json().users;",
                   "    users.forEach(function(user) {",
-                  "        pm.expect(user.email).to.match(/^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$/);",
+                  "        pm.expect(user.email).to.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/);",
                   "    });",
                   "});"
                 ]
               }
             }
           ],
+          "id": "76608cb2-370d-477b-93a6-7865e9b669a4",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "List all users"
+          },
           "response": [
             {
               "id": "7f4245d5-7811-4013-9d89-5555481a6e8b",
@@ -459,21 +474,6 @@
     },
     {
       "name": "Health Check",
-      "id": "ac5f5238-0f1e-4ba6-8cd5-ecd802b8b498",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/health",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "health"
-          ]
-        },
-        "description": "Health check endpoint"
-      },
       "event": [
         {
           "listen": "test",
@@ -508,6 +508,21 @@
           }
         }
       ],
+      "id": "ac5f5238-0f1e-4ba6-8cd5-ecd802b8b498",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        },
+        "description": "Health check endpoint"
+      },
       "response": [
         {
           "id": "8f3dc4b9-5836-4d89-86bf-95d631bfe1cf",
