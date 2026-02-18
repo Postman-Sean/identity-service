@@ -1,0 +1,206 @@
+openapi: 3.0.0
+info:
+  title: Identity API
+  version: 1.0.0
+  description: Identity service API for user management
+
+servers:
+  - url: http://localhost:3001
+    description: Local development server
+
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Health check endpoint
+      operationId: healthCheck
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  service:
+                    type: string
+                    example: identity-api
+              example:
+                status: ok
+                service: identity-api
+
+  /users:
+    get:
+      summary: List All Users
+      description: List all users
+      operationId: listUsers
+      tags:
+        - Users
+      responses:
+        '200':
+          description: List of all users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+              example:
+                users:
+                  - id: abc123
+                    name: John Doe
+                    email: john.doe@example.com
+                  - id: def456
+                    name: Jane Smith
+                    email: jane.smith@example.com
+
+    post:
+      summary: Create User
+      description: Create a new user
+      operationId: createUser
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+            example:
+              name: John Doe
+              email: john.doe@example.com
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+              example:
+                user:
+                  id: abc123
+                  name: John Doe
+                  email: john.doe@example.com
+        '200':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  existing:
+                    type: boolean
+              example:
+                user:
+                  id: abc123
+                  name: John Doe
+                  email: john.doe@example.com
+                existing: true
+        '400':
+          description: Bad request - missing required fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: name and email are required
+
+  /users/{id}:
+    get:
+      summary: Get User by ID
+      description: Get user by ID
+      operationId: getUserById
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the user
+          schema:
+            type: string
+          example: abc123
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+              example:
+                user:
+                  id: abc123
+                  name: John Doe
+                  email: john.doe@example.com
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: user not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the user
+          example: abc123
+        name:
+          type: string
+          description: Name of the user
+          example: John Doe
+        email:
+          type: string
+          format: email
+          description: Email address of the user
+          example: john.doe@example.com
+      required:
+        - id
+        - name
+        - email
+
+    CreateUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the user
+          example: John Doe
+        email:
+          type: string
+          format: email
+          description: Email address of the user
+          example: john.doe@example.com
+      required:
+        - name
+        - email
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+        - error
