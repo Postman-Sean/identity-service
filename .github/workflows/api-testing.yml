@@ -65,12 +65,12 @@ jobs:
       
       - name: Run Postman Collection
         run: |
-          postman collection run "postman/collections/Identity Service API.postman_collection.json" \
+          postman collection run "postman/collections/Identity API.postman_collection.json" \
             --env-var "baseUrl=http://localhost:3001" \
             --reporters cli,json \
             --reporter-json-export test-results.json \
             --report-events
-      
+
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
