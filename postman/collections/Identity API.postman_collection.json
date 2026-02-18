@@ -15,7 +15,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "678ef96f-f435-40e0-af03-068e29a5bcc9",
+                "type": "text/javascript",
                 "exec": [
                   "// Contract tests for Create User",
                   "pm.test('Response has valid status code (200 or 201)', function() {",
@@ -43,26 +43,14 @@
                   "    const user = pm.response.json().user;",
                   "    pm.expect(user.email).to.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/);",
                   "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "920a06fe-e362-423c-aae0-e4a64f82e939",
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
+                ]
               }
             }
           ],
           "id": "74d6e7f4-2d56-4a3e-8c1c-1fe9124950e6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "POST",
             "header": [
@@ -226,7 +214,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "0a4d9a0c-4cdb-44d9-a250-814ededb548c",
+                "type": "text/javascript",
                 "exec": [
                   "// Contract tests for Get User by ID",
                   "pm.test('Response has valid status code (200 or 404)', function() {",
@@ -263,26 +251,14 @@
                   "        pm.expect(jsonData).to.have.property('error').that.is.a('string');",
                   "    });",
                   "}"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "2d15a53f-2d81-4ef8-9e65-1d33d2474ce4",
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
+                ]
               }
             }
           ],
           "id": "1d7e1d3c-a2f1-445d-b1a5-1fbcce629e38",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [],
@@ -297,6 +273,7 @@
               ],
               "variable": [
                 {
+                  "id": "04ed0fca-fc0a-44ea-8b7c-aecf5b249475",
                   "key": "id",
                   "value": "u1",
                   "description": "The unique identifier of the user"
@@ -423,6 +400,9 @@
             }
           ],
           "id": "76608cb2-370d-477b-93a6-7865e9b669a4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [],
@@ -509,6 +489,9 @@
         }
       ],
       "id": "ac5f5238-0f1e-4ba6-8cd5-ecd802b8b498",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "GET",
         "header": [],
