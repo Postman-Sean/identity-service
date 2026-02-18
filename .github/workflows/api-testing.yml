@@ -75,6 +75,7 @@ jobs:
         run: |
           postman collection run 52114994-baf247bf-8a33-4705-ad3e-834e2e2ee08a \
             -e 52114994-b2837cd0-ded1-4247-872f-ad45e540e01a \
+            --env-var "baseUrl=http://localhost:3001" \
             --report-events
 
       - name: Upload Test Results
