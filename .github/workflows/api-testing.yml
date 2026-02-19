@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-lint-openapi-spec:
+  lint-openapi-spec:
     name: Lint OpenAPI Specification
     runs-on: ubuntu-latest
     
@@ -29,7 +29,7 @@ lint-openapi-spec:
         run: postman spec lint postman/specs/openapi.yaml --report-events
         continue-on-error: false
 
-run-postman-collection:
+  run-postman-collection:
     name: Run Postman Collection Tests
     runs-on: ubuntu-latest
     needs: lint-openapi-spec
